@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
+  base: '/max-chat-integration-api/',
   css: {
     preprocessorOptions: {
       scss: {

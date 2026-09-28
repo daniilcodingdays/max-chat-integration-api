@@ -14,7 +14,7 @@
     "typecheck": "tsc -b",
     "lint": "oxlint --deny-warnings",
     "format": "prettier --write .",
-    "predeploy": "npm run dist",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
