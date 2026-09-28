@@ -1,0 +1,2 @@
+export const INITIAL_RETRY_DELAY_MS = 1_000
+export const MAX_RETRY_DELAY_MS = 30_000

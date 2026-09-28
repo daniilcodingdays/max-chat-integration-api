@@ -1,0 +1,15 @@
+@use 'tokens';
+@use 'reset';
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  -webkit-font-smoothing: antialiased;
+}
+
+::placeholder {
+  color: var(--color-text-secondary);
+}

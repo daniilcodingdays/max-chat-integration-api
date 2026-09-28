@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: var(--radius-l);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-s);
+  transition: box-shadow var(--duration-fast) var(--easing-standard);
+
+  &:focus-within {
+    box-shadow: var(--shadow-s), var(--shadow-m);
+  }
+}
+
+.textarea {
+  min-height: var(--size-control);
+  max-height: var(--composer-max-height);
+  padding: calc((var(--size-control) - var(--line-height-m)) / 2) var(--space-4);
+  resize: none;
+  field-sizing: content;
+}
+
+.counter {
+  align-self: flex-end;
+  padding: 0 var(--space-4) var(--space-2);
+}

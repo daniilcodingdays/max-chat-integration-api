@@ -1,0 +1,51 @@
+@use 'breakpoints' as *;
+
+.page {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  padding: var(--gutter);
+  background: var(--color-surface);
+
+  @include up(sm) {
+    background: var(--color-background);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--card-max-width);
+
+  @include up(sm) {
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-l);
+  }
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  align-self: center;
+  width: var(--size-logo);
+  height: var(--size-logo);
+  border-radius: var(--radius-l);
+  background: var(--gradient-brand);
+  box-shadow: var(--shadow-brand);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-xl);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+  text-align: center;
+}

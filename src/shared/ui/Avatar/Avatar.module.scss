@@ -1,0 +1,18 @@
+.avatar {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--size-avatar);
+  height: var(--size-avatar);
+  border-radius: var(--radius-full);
+  background: var(--avatar-0);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-semibold);
+
+  @for $tone from 1 through 5 {
+    &[data-tone='#{$tone}'] {
+      background: var(--avatar-#{$tone});
+    }
+  }
+}

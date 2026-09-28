@@ -1,0 +1,55 @@
+@use 'breakpoints' as *;
+
+.window {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--gradient-chat), var(--color-chat);
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--gutter);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-divider);
+}
+
+.back {
+  margin-left: calc(-1 * var(--space-2));
+
+  @include up(md) {
+    display: none;
+  }
+}
+
+.scroller {
+  display: flex;
+  flex: 1;
+  flex-direction: column-reverse;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--gutter);
+}
+
+.day {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-2) 0;
+}
+
+.empty {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  padding: var(--gutter);
+}

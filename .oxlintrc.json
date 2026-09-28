@@ -1,0 +1,161 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc", "import"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "error",
+    "react/only-export-components": [
+      "error",
+      {
+        "allowConstantExport": true
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "import/no-cycle": "error",
+    "import/no-unassigned-import": [
+      "error",
+      {
+        "allow": ["**/*.scss"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/shared/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@/modules/**", "@/app/**"],
+                "message": "Shared kernel must not depend on modules."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/modules/*/domain/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "react",
+                "message": "Domain is framework-agnostic."
+              }
+            ],
+            "patterns": [
+              {
+                "group": ["@/modules/**", "../../**"],
+                "message": "Bounded contexts talk only through the composition root."
+              },
+              {
+                "group": [
+                  "**/application/**",
+                  "**/infrastructure/**",
+                  "**/presentation/**",
+                  "@/shared/green-api/**",
+                  "@/shared/ui/**",
+                  "@/shared/hooks/**"
+                ],
+                "message": "Domain depends on nothing."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/modules/*/application/**"],
+      "excludeFiles": ["**/*.test.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "react",
+                "message": "Application layer is framework-agnostic."
+              }
+            ],
+            "patterns": [
+              {
+                "group": ["@/modules/**", "../../**"],
+                "message": "Bounded contexts talk only through the composition root."
+              },
+              {
+                "group": [
+                  "**/infrastructure/**",
+                  "**/presentation/**",
+                  "@/shared/green-api/**",
+                  "@/shared/ui/**",
+                  "@/shared/hooks/**"
+                ],
+                "message": "Application layer depends on the domain only."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/modules/*/infrastructure/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "react",
+                "message": "Adapters are framework-agnostic."
+              }
+            ],
+            "patterns": [
+              {
+                "group": ["@/modules/**", "../../**"],
+                "message": "Bounded contexts talk only through the composition root."
+              },
+              {
+                "group": [
+                  "**/application/**",
+                  "**/presentation/**",
+                  "@/shared/ui/**",
+                  "@/shared/hooks/**"
+                ],
+                "message": "Adapters implement domain ports only."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/modules/*/presentation/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@/modules/**", "../../../**"],
+                "message": "Bounded contexts talk only through the composition root."
+              },
+              {
+                "group": ["**/infrastructure/**", "@/shared/green-api/**"],
+                "message": "UI reaches adapters only through application services."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
